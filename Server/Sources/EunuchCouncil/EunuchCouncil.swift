@@ -28,6 +28,7 @@ struct EunuchCouncil {
             .deletingLastPathComponent()
             .deletingLastPathComponent()
             .appending(path: "Web")
+            .appending(path: "build")
         print(webDir.path)
 
         let router = Router()
