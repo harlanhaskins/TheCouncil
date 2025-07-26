@@ -1,5 +1,9 @@
 import Foundation
 
+#if os(Linux)
+import FoundationNetworking
+#endif
+
 public class MultiAICoordinator {
     private var adapters: [AIAdapter] = []
     

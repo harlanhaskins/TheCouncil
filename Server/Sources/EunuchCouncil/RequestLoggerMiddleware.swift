@@ -6,6 +6,10 @@
 //
 
 import Foundation
+
+#if os(Linux)
+import FoundationNetworking
+#endif
 import Hummingbird
 import Logging
 

@@ -1,5 +1,9 @@
 import Foundation
 
+#if os(Linux)
+import FoundationNetworking
+#endif
+
 // MARK: - Anthropic Request Types
 
 public struct AnthropicRequest: Codable {

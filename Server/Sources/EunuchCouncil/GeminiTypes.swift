@@ -1,5 +1,9 @@
 import Foundation
 
+#if os(Linux)
+import FoundationNetworking
+#endif
+
 // MARK: - Gemini Request Types
 
 public struct GeminiRequest: Codable {

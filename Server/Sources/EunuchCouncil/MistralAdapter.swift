@@ -1,5 +1,9 @@
 import Foundation
 
+#if os(Linux)
+import FoundationNetworking
+#endif
+
 public actor MistralAdapter: AIAdapter {
     public let providerName = "Mistral"
     

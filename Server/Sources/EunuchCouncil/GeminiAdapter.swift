@@ -1,5 +1,9 @@
 import Foundation
 
+#if os(Linux)
+import FoundationNetworking
+#endif
+
 public actor GeminiAdapter: AIAdapter {
     public let providerName = "Gemini"
     

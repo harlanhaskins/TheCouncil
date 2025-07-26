@@ -1,5 +1,9 @@
 import Foundation
 
+#if os(Linux)
+import FoundationNetworking
+#endif
+
 // MARK: - Perplexity Request Types
 
 public struct PerplexityRequest: Codable {

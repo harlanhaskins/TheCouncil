@@ -1,4 +1,8 @@
 import Foundation
+
+#if os(Linux)
+import FoundationNetworking
+#endif
 import OpenAI
 
 public actor OpenAIAdapter: AIAdapter {

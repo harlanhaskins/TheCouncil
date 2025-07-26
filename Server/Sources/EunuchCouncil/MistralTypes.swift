@@ -1,5 +1,9 @@
 import Foundation
 
+#if os(Linux)
+import FoundationNetworking
+#endif
+
 // MARK: - Mistral Request Types
 
 public struct MistralRequest: Codable {

@@ -1,4 +1,8 @@
 import Foundation
+
+#if os(Linux)
+import FoundationNetworking
+#endif
 import Hummingbird
 
 @main
@@ -21,7 +25,10 @@ struct EunuchCouncil {
         let webDir = URL(filePath: #filePath)
             .deletingLastPathComponent()
             .deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
             .appending(path: "Web")
+        print(webDir.path)
 
         let router = Router()
             .addMiddleware {

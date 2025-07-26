@@ -1,5 +1,9 @@
 import Foundation
 
+#if os(Linux)
+import FoundationNetworking
+#endif
+
 public actor AnthropicAdapter: AIAdapter {
     public let providerName = "Anthropic"
     
