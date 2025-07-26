@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Dancing+Script:wght@400;600;700&family=UnifrakturMaguntia&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Dancing Script', cursive;
+  background-color: #1a0f0a;
+  color: #d4b896;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
