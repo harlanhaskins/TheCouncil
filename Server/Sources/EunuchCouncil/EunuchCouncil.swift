@@ -83,7 +83,10 @@ struct EunuchCouncil {
                     .contentType: "text/event-stream",
                     .cacheControl: "no-cache",
                     .connection: "keep-alive",
-                    .accessControlAllowOrigin: "*"
+                    .accessControlAllowOrigin: "*",
+                    .custom(name: "X-Accel-Buffering", value: "no"), // Disable nginx buffering
+                    .custom(name: "Access-Control-Allow-Credentials", value: "true"),
+                    .custom(name: "Access-Control-Expose-Headers", value: "Content-Type")
                 ],
                 body: .init(asyncSequence: session.map { event in
                     do {

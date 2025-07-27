@@ -65,6 +65,7 @@ function App() {
     isComplete: false
   });
   const [loading, setLoading] = useState(false);
+  const [connectionError, setConnectionError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'results' | 'transcript' | 'summary'>('results');
   const eventSourceRef = useRef<EventSource | null>(null);
 
@@ -83,15 +84,22 @@ function App() {
     });
 
     setLoading(true);
+    setConnectionError(null);
 
     // Close existing connection
     if (eventSourceRef.current) {
       eventSourceRef.current.close();
     }
 
-    // Start streaming
+    // Start streaming with SSL-friendly configuration
     const encodedQuery = encodeURIComponent(query);
-    const eventSource = new EventSource(`/stream/council?query=${encodedQuery}`);
+    const protocol = window.location.protocol === 'https:' ? 'https:' : 'http:';
+    const host = window.location.host;
+    const streamUrl = `${protocol}//${host}/stream/council?query=${encodedQuery}`;
+    
+    const eventSource = new EventSource(streamUrl, {
+      withCredentials: false // Set to true if you need cookies/auth
+    });
     eventSourceRef.current = eventSource;
 
     eventSource.onmessage = (event) => {
@@ -155,6 +163,21 @@ function App() {
 
     eventSource.onerror = (error) => {
       console.error('EventSource error:', error);
+      console.error('Connection state:', eventSource.readyState);
+      console.error('Stream URL:', streamUrl);
+      
+      // More detailed error handling for SSL issues
+      if (eventSource.readyState === EventSource.CLOSED) {
+        console.error('EventSource connection was closed by the server');
+        setConnectionError('Connection lost. This may be due to SSL configuration. Please try again.');
+      } else if (eventSource.readyState === EventSource.CONNECTING) {
+        console.error('EventSource is still trying to connect');
+        // Don't immediately set loading to false if still connecting
+        return;
+      } else {
+        setConnectionError('Failed to establish live connection. Check your network and SSL settings.');
+      }
+      
       setLoading(false);
       eventSource.close();
     };
@@ -205,6 +228,19 @@ function App() {
             </div>
           )}
         </div>
+
+        {connectionError && (
+          <div className="connection-error" style={{
+            background: '#fee2e2',
+            border: '1px solid #fca5a5',
+            borderRadius: '8px',
+            padding: '12px',
+            margin: '16px 0',
+            color: '#991b1b'
+          }}>
+            <strong>⚠️ Connection Error:</strong> {connectionError}
+          </div>
+        )}
 
         {loading && councilState.currentRound && (
           <div className="streaming-status">
