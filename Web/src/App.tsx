@@ -91,15 +91,9 @@ function App() {
       eventSourceRef.current.close();
     }
 
-    // Start streaming with SSL-friendly configuration
+    // Start streaming
     const encodedQuery = encodeURIComponent(query);
-    const protocol = window.location.protocol === 'https:' ? 'https:' : 'http:';
-    const host = window.location.host;
-    const streamUrl = `${protocol}//${host}/stream/council?query=${encodedQuery}`;
-    
-    const eventSource = new EventSource(streamUrl, {
-      withCredentials: false // Set to true if you need cookies/auth
-    });
+    const eventSource = new EventSource(`/stream/council?query=${encodedQuery}`);
     eventSourceRef.current = eventSource;
 
     eventSource.onmessage = (event) => {
@@ -164,7 +158,6 @@ function App() {
     eventSource.onerror = (error) => {
       console.error('EventSource error:', error);
       console.error('Connection state:', eventSource.readyState);
-      console.error('Stream URL:', streamUrl);
       
       // More detailed error handling for SSL issues
       if (eventSource.readyState === EventSource.CLOSED) {

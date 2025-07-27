@@ -84,9 +84,7 @@ struct EunuchCouncil {
                     .cacheControl: "no-cache",
                     .connection: "keep-alive",
                     .accessControlAllowOrigin: "*",
-                    .custom(name: "X-Accel-Buffering", value: "no"), // Disable nginx buffering
-                    .custom(name: "Access-Control-Allow-Credentials", value: "true"),
-                    .custom(name: "Access-Control-Expose-Headers", value: "Content-Type")
+                    .init("X-Accel-Buffering")!: "no"
                 ],
                 body: .init(asyncSequence: session.map { event in
                     do {
@@ -112,7 +110,7 @@ struct EunuchCouncil {
 
         let app = Application(
             router: router,
-            configuration: .init(address: .hostname("0.0.0.0", port: 8077))
+            configuration: .init(address: .hostname("0.0.0.0", port: 8073))
         )
         try await app.runService()
     }
