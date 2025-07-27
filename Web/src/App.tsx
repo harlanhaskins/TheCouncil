@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './App.css';
 
 interface AssistantResult {
@@ -66,8 +66,46 @@ function App() {
   });
   const [loading, setLoading] = useState(false);
   const [connectionError, setConnectionError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'results' | 'transcript' | 'summary'>('results');
+  const [showTranscript, setShowTranscript] = useState(false);
+  const [gridColumns, setGridColumns] = useState(4);
   const eventSourceRef = useRef<EventSource | null>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  // Calculate dynamic grid columns based on container width
+  const calculateGridColumns = useCallback(() => {
+    if (!gridRef.current) return;
+    
+    const containerWidth = gridRef.current.offsetWidth;
+    const padding = window.innerWidth <= 480 ? 24 : window.innerWidth <= 768 ? 30 : 40;
+    const availableWidth = containerWidth - padding;
+    
+    // iOS-style calculation: adaptive min width based on screen size
+    const minCardWidth = window.innerWidth <= 480 ? 250 : window.innerWidth <= 768 ? 260 : 280;
+    const maxColumns = Math.max(1, Math.floor(availableWidth / minCardWidth));
+    const columns = Math.min(maxColumns, 4);
+    
+    setGridColumns(columns);
+  }, []);
+
+  // Handle window resize
+  useEffect(() => {
+    calculateGridColumns();
+    
+    const handleResize = () => {
+      requestAnimationFrame(calculateGridColumns);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [calculateGridColumns]);
+
+  // Recalculate when results section becomes visible
+  useEffect(() => {
+    if (councilState.results.length > 0) {
+      // Small delay to ensure DOM is updated
+      setTimeout(calculateGridColumns, 100);
+    }
+  }, [councilState.results.length, calculateGridColumns]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -212,6 +250,16 @@ function App() {
                 {loading ? 'Convening...' : 'Convene'}
               </button>
             </div>
+            
+            {/* Integrated Status View */}
+            {loading && councilState.currentRound && (
+              <div className="integrated-status">
+                <div className="status-header">
+                  <span className="round-info">🏛️ Round {councilState.currentRound}: {councilState.roundTitle}</span>
+                  <span className="advisor-count">{councilState.results.length} advisors have spoken</span>
+                </div>
+              </div>
+            )}
           </form>
           
           {councilState.summary && (
@@ -235,90 +283,87 @@ function App() {
           </div>
         )}
 
-        {loading && councilState.currentRound && (
-          <div className="streaming-status">
-            <h3>🏛️ Round {councilState.currentRound}: {councilState.roundTitle}</h3>
-            <div className="advisor-count">{councilState.results.length} advisors have spoken</div>
+
+        {/* Transcript Button */}
+        {councilState.transcript && (
+          <div className="transcript-button-container">
+            <button 
+              onClick={() => setShowTranscript(true)}
+              className="transcript-button"
+            >
+              📜 View Transcript
+            </button>
           </div>
         )}
 
-        {(councilState.results.length > 0 || councilState.transcript) && (
-          <div className="results-section">
-            <div className="tabs">
-              <button 
-                className={activeTab === 'results' ? 'tab active' : 'tab'}
-                onClick={() => setActiveTab('results')}
-              >
-                Council ({councilState.results.length})
-              </button>
-              <button 
-                className={activeTab === 'transcript' ? 'tab active' : 'tab'}
-                onClick={() => setActiveTab('transcript')}
-                disabled={!councilState.transcript}
-              >
-                Transcript {councilState.transcript ? '✅' : '⏳'}
-              </button>
-            </div>
-
-            <div className="tab-content">
-              {activeTab === 'results' && (
-                <div className="advisor-grid">
-                  {ADVISORS.map((advisor) => {
-                    const result = councilState.results.find(r => r.name === advisor.name);
-                    const hasSpoken = result !== undefined;
-                    
-                    return (
-                      <div
-                        key={advisor.name}
-                        className={`advisor-card ${hasSpoken ? 'has-spoken' : 'waiting'}`}
-                      >
-                        <div className="advisor-header">
-                          <div className="advisor-info">
-                            <div className="advisor-name">{advisor.name}</div>
-                          </div>
-                          {result && getProviderFavicon(result.provider) && (
-                            <img 
-                              src={getProviderFavicon(result.provider)} 
-                              alt={`${result.provider} icon`}
-                              className="provider-favicon" 
-                              title={`Powered by ${result.provider}`}
-                            />
-                          )}
-                        </div>
-                        
-                        <div className="advisor-content">
-                          {result ? (
-                            <>
-                              <div className="response-text">{result.response}</div>
-                              <div className="timestamp">
-                                {new Date(result.timestamp).toLocaleTimeString()}
-                              </div>
-                            </>
-                          ) : (
-                            <div className="waiting-message">Awaiting counsel...</div>
-                          )}
-                        </div>
+        {/* Advisor Grid */}
+        {councilState.results.length > 0 && (
+          <div 
+            ref={gridRef}
+            className="advisor-grid"
+            style={{ gridTemplateColumns: `repeat(${gridColumns}, 1fr)` }}
+          >
+            {ADVISORS.map((advisor) => {
+              const result = councilState.results.find(r => r.name === advisor.name);
+              const hasSpoken = result !== undefined;
+              
+              return (
+                <div
+                  key={advisor.name}
+                  className={`advisor-card ${hasSpoken ? 'has-spoken' : 'waiting'}`}
+                >
+                  <div className="advisor-header">
+                    <div className="advisor-info">
+                      <div className="advisor-name-line">
+                        <span className="advisor-name">{advisor.name}</span>
+                        {result && (
+                          <span className="timestamp">
+                            {new Date(result.timestamp).toLocaleTimeString()}
+                          </span>
+                        )}
                       </div>
-                    );
-                  })}
-                  
-                  {loading && !councilState.isComplete && (
-                    <div className="grid-status">
-                      Council in session... {councilState.results.length} of {ADVISORS.length} advisors have spoken
                     </div>
-                  )}
+                    {result && getProviderFavicon(result.provider) && (
+                      <img 
+                        src={getProviderFavicon(result.provider)} 
+                        alt={`${result.provider} icon`}
+                        className="provider-favicon" 
+                        title={`Powered by ${result.provider}`}
+                      />
+                    )}
+                  </div>
+                  
+                  <div className="advisor-content">
+                    {result ? (
+                      <div className="response-text-container">
+                        <div className="response-text">{result.response}</div>
+                      </div>
+                    ) : (
+                      <div className="waiting-message">Awaiting counsel...</div>
+                    )}
+                  </div>
                 </div>
-              )}
+              );
+            })}
+          </div>
+        )}
 
-              {activeTab === 'transcript' && (
-                <div className="transcript">
-                  {councilState.transcript ? (
-                    <pre>{councilState.transcript}</pre>
-                  ) : (
-                    <div className="loading-placeholder">Transcript will appear when ready...</div>
-                  )}
-                </div>
-              )}
+        {/* Transcript Modal */}
+        {showTranscript && (
+          <div className="transcript-modal-overlay" onClick={() => setShowTranscript(false)}>
+            <div className="transcript-modal" onClick={(e) => e.stopPropagation()}>
+              <div className="transcript-modal-header">
+                <h3>Council Transcript</h3>
+                <button 
+                  onClick={() => setShowTranscript(false)}
+                  className="transcript-close-button"
+                >
+                  ✕
+                </button>
+              </div>
+              <div className="transcript-modal-content">
+                <pre>{councilState.transcript}</pre>
+              </div>
             </div>
           </div>
         )}
