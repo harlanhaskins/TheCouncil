@@ -1,0 +1,605 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DCF16BB72E3668C600EFD44B /* EunuchCouncil in Frameworks */ = {isa = PBXBuildFile; productRef = DCF16BB62E3668C600EFD44B /* EunuchCouncil */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DCD0CEA52E36662900D08475 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DCD0CE8F2E36662800D08475 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DCD0CE962E36662800D08475;
+			remoteInfo = EunuchCouncil;
+		};
+		DCD0CEAF2E36662900D08475 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DCD0CE8F2E36662800D08475 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DCD0CE962E36662800D08475;
+			remoteInfo = EunuchCouncil;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DCD0CE972E36662800D08475 /* EunuchCouncilAppApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EunuchCouncilAppApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCD0CEA42E36662900D08475 /* EunuchCouncilAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EunuchCouncilAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCD0CEAE2E36662900D08475 /* EunuchCouncilAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EunuchCouncilAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCD0CECF2E36679900D08475 /* Server */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Server; path = ../Server; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		DCF16BE62E3672C100EFD44B /* Exceptions for "EunuchCouncil" folder in "EunuchCouncilAppApp" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = DCD0CE962E36662800D08475 /* EunuchCouncilAppApp */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		DCD0CE992E36662800D08475 /* EunuchCouncil */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DCF16BE62E3672C100EFD44B /* Exceptions for "EunuchCouncil" folder in "EunuchCouncilAppApp" target */,
+			);
+			path = EunuchCouncil;
+			sourceTree = "<group>";
+		};
+		DCD0CEA72E36662900D08475 /* EunuchCouncilTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = EunuchCouncilTests;
+			sourceTree = "<group>";
+		};
+		DCD0CEB12E36662900D08475 /* EunuchCouncilUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = EunuchCouncilUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DCD0CE942E36662800D08475 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCF16BB72E3668C600EFD44B /* EunuchCouncil in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCD0CEA12E36662900D08475 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCD0CEAB2E36662900D08475 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DCD0CE8E2E36662800D08475 = {
+			isa = PBXGroup;
+			children = (
+				DCD0CECF2E36679900D08475 /* Server */,
+				DCD0CE992E36662800D08475 /* EunuchCouncil */,
+				DCD0CEA72E36662900D08475 /* EunuchCouncilTests */,
+				DCD0CEB12E36662900D08475 /* EunuchCouncilUITests */,
+				DCF16BB52E3668C600EFD44B /* Frameworks */,
+				DCD0CE982E36662800D08475 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DCD0CE982E36662800D08475 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DCD0CE972E36662800D08475 /* EunuchCouncilAppApp.app */,
+				DCD0CEA42E36662900D08475 /* EunuchCouncilAppTests.xctest */,
+				DCD0CEAE2E36662900D08475 /* EunuchCouncilAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DCF16BB52E3668C600EFD44B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DCD0CE962E36662800D08475 /* EunuchCouncilAppApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCD0CEB82E36662900D08475 /* Build configuration list for PBXNativeTarget "EunuchCouncilAppApp" */;
+			buildPhases = (
+				DCD0CE932E36662800D08475 /* Sources */,
+				DCD0CE942E36662800D08475 /* Frameworks */,
+				DCD0CE952E36662800D08475 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				DCD0CE992E36662800D08475 /* EunuchCouncil */,
+			);
+			name = EunuchCouncilAppApp;
+			packageProductDependencies = (
+				DCF16BB62E3668C600EFD44B /* EunuchCouncil */,
+			);
+			productName = EunuchCouncil;
+			productReference = DCD0CE972E36662800D08475 /* EunuchCouncilAppApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DCD0CEA32E36662900D08475 /* EunuchCouncilAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCD0CEBB2E36662900D08475 /* Build configuration list for PBXNativeTarget "EunuchCouncilAppTests" */;
+			buildPhases = (
+				DCD0CEA02E36662900D08475 /* Sources */,
+				DCD0CEA12E36662900D08475 /* Frameworks */,
+				DCD0CEA22E36662900D08475 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DCD0CEA62E36662900D08475 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				DCD0CEA72E36662900D08475 /* EunuchCouncilTests */,
+			);
+			name = EunuchCouncilAppTests;
+			packageProductDependencies = (
+			);
+			productName = EunuchCouncilTests;
+			productReference = DCD0CEA42E36662900D08475 /* EunuchCouncilAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DCD0CEAD2E36662900D08475 /* EunuchCouncilAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCD0CEBE2E36662900D08475 /* Build configuration list for PBXNativeTarget "EunuchCouncilAppUITests" */;
+			buildPhases = (
+				DCD0CEAA2E36662900D08475 /* Sources */,
+				DCD0CEAB2E36662900D08475 /* Frameworks */,
+				DCD0CEAC2E36662900D08475 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DCD0CEB02E36662900D08475 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				DCD0CEB12E36662900D08475 /* EunuchCouncilUITests */,
+			);
+			name = EunuchCouncilAppUITests;
+			packageProductDependencies = (
+			);
+			productName = EunuchCouncilUITests;
+			productReference = DCD0CEAE2E36662900D08475 /* EunuchCouncilAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DCD0CE8F2E36662800D08475 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					DCD0CE962E36662800D08475 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					DCD0CEA32E36662900D08475 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = DCD0CE962E36662800D08475;
+					};
+					DCD0CEAD2E36662900D08475 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = DCD0CE962E36662800D08475;
+					};
+				};
+			};
+			buildConfigurationList = DCD0CE922E36662800D08475 /* Build configuration list for PBXProject "EunuchCouncilApp" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DCD0CE8E2E36662800D08475;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = DCD0CE982E36662800D08475 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DCD0CE962E36662800D08475 /* EunuchCouncilAppApp */,
+				DCD0CEA32E36662900D08475 /* EunuchCouncilAppTests */,
+				DCD0CEAD2E36662900D08475 /* EunuchCouncilAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DCD0CE952E36662800D08475 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCD0CEA22E36662900D08475 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCD0CEAC2E36662900D08475 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DCD0CE932E36662800D08475 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCD0CEA02E36662900D08475 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCD0CEAA2E36662900D08475 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DCD0CEA62E36662900D08475 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DCD0CE962E36662800D08475 /* EunuchCouncilAppApp */;
+			targetProxy = DCD0CEA52E36662900D08475 /* PBXContainerItemProxy */;
+		};
+		DCD0CEB02E36662900D08475 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DCD0CE962E36662800D08475 /* EunuchCouncilAppApp */;
+			targetProxy = DCD0CEAF2E36662900D08475 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		DCD0CEB62E36662900D08475 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = W7GJMYD5A4;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DCD0CEB72E36662900D08475 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = W7GJMYD5A4;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DCD0CEB92E36662900D08475 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W7GJMYD5A4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EunuchCouncil/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.harlanhaskins.EunuchCouncil;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DCD0CEBA2E36662900D08475 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W7GJMYD5A4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EunuchCouncil/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.harlanhaskins.EunuchCouncil;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DCD0CEBC2E36662900D08475 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W7GJMYD5A4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.harlanhaskins.EunuchCouncilTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EunuchCouncilApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EunuchCouncilApp";
+			};
+			name = Debug;
+		};
+		DCD0CEBD2E36662900D08475 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W7GJMYD5A4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.harlanhaskins.EunuchCouncilTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EunuchCouncilApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/EunuchCouncilApp";
+			};
+			name = Release;
+		};
+		DCD0CEBF2E36662900D08475 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W7GJMYD5A4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.harlanhaskins.EunuchCouncilUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = EunuchCouncil;
+			};
+			name = Debug;
+		};
+		DCD0CEC02E36662900D08475 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W7GJMYD5A4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.harlanhaskins.EunuchCouncilUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = EunuchCouncil;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DCD0CE922E36662800D08475 /* Build configuration list for PBXProject "EunuchCouncilApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCD0CEB62E36662900D08475 /* Debug */,
+				DCD0CEB72E36662900D08475 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCD0CEB82E36662900D08475 /* Build configuration list for PBXNativeTarget "EunuchCouncilAppApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCD0CEB92E36662900D08475 /* Debug */,
+				DCD0CEBA2E36662900D08475 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCD0CEBB2E36662900D08475 /* Build configuration list for PBXNativeTarget "EunuchCouncilAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCD0CEBC2E36662900D08475 /* Debug */,
+				DCD0CEBD2E36662900D08475 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCD0CEBE2E36662900D08475 /* Build configuration list for PBXNativeTarget "EunuchCouncilAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCD0CEBF2E36662900D08475 /* Debug */,
+				DCD0CEC02E36662900D08475 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DCF16BB62E3668C600EFD44B /* EunuchCouncil */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = EunuchCouncil;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = DCD0CE8F2E36662800D08475 /* Project object */;
+}
