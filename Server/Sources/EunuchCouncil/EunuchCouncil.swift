@@ -109,7 +109,7 @@ struct EunuchCouncil {
 
         let app = Application(
             router: router,
-            configuration: .init(address: .hostname("127.0.0.1", port: 8077))
+            configuration: .init(address: .hostname("0.0.0.0", port: 8077))
         )
         try await app.runService()
     }
