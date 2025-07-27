@@ -27,8 +27,8 @@ struct AdvisorGridView: View {
             
             // Calculate card dimensions
             let cardWidth = (availableWidth - (spacing * CGFloat(columns - 1))) / CGFloat(columns)
-            let cardHeight: CGFloat = 200 // Fixed height for consistency
-            
+            let cardHeight: CGFloat = 250 // Fixed height for consistency
+
             ScrollView {
                 LazyVGrid(columns: Array(repeating: GridItem(.fixed(cardWidth), spacing: spacing), count: columns), spacing: spacing) {
                     ForEach(advisors, id: \.name) { advisor in
@@ -58,7 +58,7 @@ struct AdvisorCardView: View {
         VStack(alignment: .leading, spacing: 0) {
             // Fixed Header with name, timestamp, and favicon
             VStack(alignment: .leading, spacing: 8) {
-                HStack {
+                HStack(alignment: .firstTextBaseline) {
                     Text(advisor.name)
                         .font(.headline)
                         .fontWeight(.semibold)

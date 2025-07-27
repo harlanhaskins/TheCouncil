@@ -82,7 +82,7 @@ struct CouncilResultsView: View {
                         )
                     }
                 }
-                .frame(height: 120) // Fixed height for consistent layout
+                .animation(.easeInOut(duration: 0.3), value: !viewModel.councilState.summary.isEmpty)
                 .padding(.horizontal, 20)
 
                 // Connection error
