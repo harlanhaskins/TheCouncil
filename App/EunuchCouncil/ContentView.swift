@@ -11,7 +11,8 @@ import EunuchCouncil
 struct ContentView: View {
     @State private var query = ""
     @State private var navigationPath = NavigationPath()
-    @State private var viewModel = CouncilViewModel()
+    @State private var showHistory = false
+    @State private var sessionManager = SessionManager.shared
 
     var body: some View {
         NavigationStack(path: $navigationPath) {
@@ -43,7 +44,8 @@ struct ContentView: View {
 
                     Button(action: {
                         if !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                            navigationPath.append("council")
+                            let session = sessionManager.createSession(query: query)
+                            navigationPath.append(session.id)
                         }
                     }) {
                         Text("Convene Council")
@@ -85,10 +87,24 @@ struct ContentView: View {
                 Spacer()
             }
             .fontDesign(.serif)
-            .navigationBarHidden(true)
-            .navigationDestination(for: String.self) { destination in
-                if destination == "council" {
-                    CouncilResultsView(viewModel: viewModel, query: query)
+            .navigationBarHidden(false)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        showHistory = true
+                    }) {
+                        Image(systemName: "clock")
+                            .font(.system(size: 18, weight: .semibold))
+                            .foregroundColor(.eunuchGold)
+                    }
+                }
+            }
+            .sheet(isPresented: $showHistory) {
+                SessionHistoryView()
+            }
+            .navigationDestination(for: UUID.self) { sessionId in
+                if let session = sessionManager.getSession(id: sessionId) {
+                    CouncilResultsView(session: session)
                 }
             }
         }

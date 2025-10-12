@@ -9,9 +9,16 @@ import SwiftUI
 import EunuchCouncil
 
 struct CouncilResultsView: View {
-    var viewModel: CouncilViewModel
+    let session: CouncilSession
     @State private var showTranscriptPopover = false
-    let query: String
+    
+    private var viewModel: CouncilViewModel {
+        session.viewModel
+    }
+    
+    private var query: String {
+        session.query
+    }
 
     var body: some View {
         // Main scrollable content
@@ -109,23 +116,12 @@ struct CouncilResultsView: View {
                 }
             }
         }
-        .onAppear {
-            // Start the council session when the view appears
-            if viewModel.councilState.results.isEmpty && !viewModel.isLoading {
-                viewModel.conveneCouncil(query: query)
-            }
-        }
-        .onDisappear {
-            viewModel.cancelSession()
-        }
     }
 }
 
 #Preview {
-    NavigationStack {
-        CouncilResultsView(
-            viewModel: CouncilViewModel(),
-            query: "What should we do about the economy?"
-        )
+    let session = CouncilSession(query: "What should we do about the economy?")
+    return NavigationStack {
+        CouncilResultsView(session: session)
     }
 }
