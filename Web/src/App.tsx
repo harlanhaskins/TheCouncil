@@ -32,7 +32,7 @@ const getProviderFavicon = (provider: string): string => {
     case 'openai': return 'https://openai.com/favicon.ico';
     case 'anthropic': return 'https://claude.ai/favicon.ico';
     case 'gemini': return 'https://www.gstatic.com/lamda/images/gemini_sparkle_4g_512_lt_f94943af3be039176192d.png';
-    case 'perplexity': return 'https://perplexity.ai/favicon.ico';
+    case 'perplexity': return 'https://www.perplexity.ai/favicon.ico';
     case 'mistral': return 'https://mistral.ai/favicon.ico';
     default: return '';
   }
