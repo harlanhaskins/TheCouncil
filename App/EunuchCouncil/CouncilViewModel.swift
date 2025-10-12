@@ -38,15 +38,27 @@ class CouncilViewModel {
     }
     
     private func streamCouncilSession(query: String) async {
-        guard let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-              let url = URL(string: "https://council.harlanhaskins.com/stream/council?query=\(encodedQuery)") else {
+        guard let url = URL(string: "https://council.harlanhaskins.com/stream/council") else {
             connectionError = "Invalid URL"
             isLoading = false
             return
         }
-        
+
+        // Create POST request with JSON body
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let requestBody = ["query": query]
+        guard let jsonData = try? JSONEncoder().encode(requestBody) else {
+            connectionError = "Failed to encode request"
+            isLoading = false
+            return
+        }
+        request.httpBody = jsonData
+
         do {
-            let (asyncBytes, response) = try await URLSession.shared.bytes(from: url)
+            let (asyncBytes, response) = try await URLSession.shared.bytes(for: request)
             
             guard let httpResponse = response as? HTTPURLResponse,
                   httpResponse.statusCode == 200 else {

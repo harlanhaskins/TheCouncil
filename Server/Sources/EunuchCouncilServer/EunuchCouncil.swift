@@ -46,12 +46,11 @@ struct EunuchCouncil {
         router.on("/stream/council", method: .options) { _, _ in
             Response(status: .ok)
         }
-        
+
         // Add streaming council endpoint
-        router.get("/stream/council") { req, context in
-            guard let query = req.uri.queryParameters.get("query") else {
-                throw HTTPError(.badRequest, message: "Missing query parameter")
-            }
+        router.post("/stream/council") { req, context in
+            let streamRequest = try await req.decode(as: QueryRequest.self, context: context)
+            let query = streamRequest.query
             
             // Create coordinator
             let configurations = try loadConfigurations()

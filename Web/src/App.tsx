@@ -68,7 +68,7 @@ function App() {
   const [connectionError, setConnectionError] = useState<string | null>(null);
   const [showTranscript, setShowTranscript] = useState(false);
   const [gridColumns, setGridColumns] = useState(4);
-  const eventSourceRef = useRef<EventSource | null>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
   // Calculate dynamic grid columns based on container width
@@ -124,101 +124,125 @@ function App() {
     setLoading(true);
     setConnectionError(null);
 
-    // Close existing connection
-    if (eventSourceRef.current) {
-      eventSourceRef.current.close();
+    // Cancel existing connection
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
     }
 
-    // Start streaming
-    const encodedQuery = encodeURIComponent(query);
-    const eventSource = new EventSource(`/stream/council?query=${encodedQuery}`);
-    eventSourceRef.current = eventSource;
+    // Create new AbortController for this request
+    const abortController = new AbortController();
+    abortControllerRef.current = abortController;
 
-    eventSource.onmessage = (event) => {
-      try {
-        const data = JSON.parse(event.data);
-        
-        switch (data.type) {
-          case 'roundStarted':
-            setCouncilState(prev => ({
-              ...prev,
-              currentRound: data.data.roundNumber,
-              roundTitle: data.data.title
-            }));
-            break;
-            
-          case 'advisorResponse':
-            setCouncilState(prev => ({
-              ...prev,
-              results: [...prev.results, {
-                id: data.data.advisorName,
-                name: data.data.advisorName,
-                response: data.data.statement,
-                timestamp: Date.now(),
-                uuid: crypto.randomUUID(), // Generate stable UUID
-                provider: data.data.provider
-              }] // Append new items for chronological order
-            }));
-            break;
-            
-          case 'roundCompleted':
-            // Round completed, just update UI
-            break;
-            
-          case 'transcriptGenerated':
-            setCouncilState(prev => ({
-              ...prev,
-              transcript: data.data.transcript
-            }));
-            break;
-            
-          case 'summaryGenerated':
-            setCouncilState(prev => ({
-              ...prev,
-              summary: data.data.summary
-            }));
-            break;
-            
-          case 'sessionCompleted':
-            setCouncilState(prev => ({
-              ...prev,
-              isComplete: true
-            }));
-            setLoading(false);
-            eventSource.close();
-            break;
+    try {
+      // Start streaming with POST request
+      const response = await fetch('/stream/council', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query }),
+        signal: abortController.signal,
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder();
+
+      if (!reader) {
+        throw new Error('No response body');
+      }
+
+      let buffer = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+
+        if (done) break;
+
+        // Decode the chunk and add to buffer
+        buffer += decoder.decode(value, { stream: true });
+
+        // Process complete SSE messages
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || ''; // Keep incomplete line in buffer
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            try {
+              const data = JSON.parse(line.slice(6));
+
+              switch (data.type) {
+                case 'roundStarted':
+                  setCouncilState(prev => ({
+                    ...prev,
+                    currentRound: data.data.roundNumber,
+                    roundTitle: data.data.title
+                  }));
+                  break;
+
+                case 'advisorResponse':
+                  setCouncilState(prev => ({
+                    ...prev,
+                    results: [...prev.results, {
+                      id: data.data.advisorName,
+                      name: data.data.advisorName,
+                      response: data.data.statement,
+                      timestamp: Date.now(),
+                      uuid: crypto.randomUUID(),
+                      provider: data.data.provider
+                    }]
+                  }));
+                  break;
+
+                case 'roundCompleted':
+                  // Round completed, just update UI
+                  break;
+
+                case 'transcriptGenerated':
+                  setCouncilState(prev => ({
+                    ...prev,
+                    transcript: data.data.transcript
+                  }));
+                  break;
+
+                case 'summaryGenerated':
+                  setCouncilState(prev => ({
+                    ...prev,
+                    summary: data.data.summary
+                  }));
+                  break;
+
+                case 'sessionCompleted':
+                  setCouncilState(prev => ({
+                    ...prev,
+                    isComplete: true
+                  }));
+                  setLoading(false);
+                  break;
+              }
+            } catch (error) {
+              console.error('Error parsing stream data:', error);
+            }
+          }
         }
-      } catch (error) {
-        console.error('Error parsing stream data:', error);
       }
-    };
-
-    eventSource.onerror = (error) => {
-      console.error('EventSource error:', error);
-      console.error('Connection state:', eventSource.readyState);
-      
-      // More detailed error handling for SSL issues
-      if (eventSource.readyState === EventSource.CLOSED) {
-        console.error('EventSource connection was closed by the server');
-        setConnectionError('Connection lost. This may be due to SSL configuration. Please try again.');
-      } else if (eventSource.readyState === EventSource.CONNECTING) {
-        console.error('EventSource is still trying to connect');
-        // Don't immediately set loading to false if still connecting
-        return;
-      } else {
-        setConnectionError('Failed to establish live connection. Check your network and SSL settings.');
+    } catch (error: any) {
+      if (error.name !== 'AbortError') {
+        console.error('Stream error:', error);
+        setConnectionError('Failed to establish connection. Please try again.');
       }
-      
       setLoading(false);
-      eventSource.close();
-    };
+    }
   };
 
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      if (eventSourceRef.current) {
-        eventSourceRef.current.close();
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
       }
     };
   }, []);
